@@ -7,13 +7,13 @@ import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.Observer;
 
 
 // adapted from https://stackoverflow.com/questions/67553152/how-do-i-create-a-clock-using-timer
-public class DigitalClock extends Clock implements Runnable {
+public class DigitalClock extends Clock {
 
   private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H:mm:ss S"); // "H:mm:ss a"
-  private final int repaintPeriod = 100; // milliseconds
   private int hoursOffsetTimeZone;
   private JLabel clockLabel;
 
@@ -35,7 +35,6 @@ public class DigitalClock extends Clock implements Runnable {
     panel.add(placeLabel);
 
     updateClockLabel();
-    run();
   }
 
   public void show() {
@@ -44,17 +43,6 @@ public class DigitalClock extends Clock implements Runnable {
     frame.add(panel);
     frame.pack();
     frame.setVisible(true);
-  }
-
-  @Override
-  public void run() {
-    Timer timer = new Timer(repaintPeriod, new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent event) {
-        updateClockLabel();
-      }
-    });
-    timer.start();
   }
 
   public void updateClockLabel() {
@@ -69,4 +57,7 @@ public class DigitalClock extends Clock implements Runnable {
 
   }
 
+  public void update (java.util.Observable o, Object arg) {
+    updateClockLabel();
+  }
 }

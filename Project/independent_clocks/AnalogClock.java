@@ -4,10 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.Observable;
 
 // adapted from https://stackoverflow.com/questions/67553152/how-do-i-create-a-clock-using-timer
 public class AnalogClock extends Clock {
-  private final int repaintPeriod = 1000; // milliseconds
   private int hoursOffsetTimeZone;
   private String worldPlace;
 
@@ -16,7 +16,6 @@ public class AnalogClock extends Clock {
     this.worldPlace = worldPlace;
     this.hoursOffsetTimeZone = hoursOffsetTimeZone;
     panel = new MyJPanel();
-    run();
   }
 
   public void show() {
@@ -27,10 +26,9 @@ public class AnalogClock extends Clock {
     frame.setVisible(true);
   }
 
-  private void run() {
-    new Timer(repaintPeriod, e -> panel.repaint()).start();
-    // this is a java.swing.Timer object, not a java.util.Timer !
-    // repaint() calls paintComponent()
+  @Override
+  public void update(Observable o, Object arg) {
+    panel.repaint();
   }
 
   // we need to override paintComponent() of JPanel so we make a private class MyJPanel
@@ -93,5 +91,6 @@ public class AnalogClock extends Clock {
       g2d.drawString(worldPlace, (int) (radius * 1.2), (int) (radius * 2.0));
     }
   }
+
 
 }

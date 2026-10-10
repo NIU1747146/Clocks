@@ -2,7 +2,7 @@ package independent_clocks;
 
 import javax.swing.*;
 
-public abstract class Clock {
+public abstract class Clock implements java.util.Observer {
   // this is just to have in Main.java a list with digital and analog clocks
 
   protected JPanel panel;
