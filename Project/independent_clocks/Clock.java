@@ -8,6 +8,11 @@ public abstract class Clock implements java.util.Observer {
   protected JPanel panel;
   // this is a container class, contains all the elements of the UI
 
-  public abstract void show();
-  // every Clock subclass must implement a show()
+  public void show() {
+    JFrame frame = new JFrame();
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.add(panel);
+    frame.pack();
+    frame.setVisible(true);
+  }
 }

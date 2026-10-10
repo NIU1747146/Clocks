@@ -18,14 +18,6 @@ public class AnalogClock extends Clock {
     panel = new MyJPanel();
   }
 
-  public void show() {
-    JFrame frame = new JFrame();
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.add(panel);
-    frame.pack();
-    frame.setVisible(true);
-  }
-
   @Override
   public void update(Observable o, Object arg) {
     panel.repaint();

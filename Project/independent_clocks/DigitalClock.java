@@ -2,13 +2,9 @@ package independent_clocks;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.util.Observer;
-
 
 // adapted from https://stackoverflow.com/questions/67553152/how-do-i-create-a-clock-using-timer
 public class DigitalClock extends Clock {
@@ -35,14 +31,6 @@ public class DigitalClock extends Clock {
     panel.add(placeLabel);
 
     updateClockLabel();
-  }
-
-  public void show() {
-    JFrame frame = new JFrame();
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.add(panel);
-    frame.pack();
-    frame.setVisible(true);
   }
 
   public void updateClockLabel() {

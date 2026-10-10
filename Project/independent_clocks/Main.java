@@ -2,6 +2,7 @@ package independent_clocks;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.time.Duration;
 
 public class Main {
   public static void main(String[] args) {
@@ -13,7 +14,8 @@ public class Main {
         new AnalogClock(3, "Moscow, Russia"),
         new DigitalClock(-7, "Sonora, Mexico"),
         new AnalogClock(-1, "Berlin, Germany"),
-        new DigitalClock(-4, "Yerevan, Armenia")
+        new DigitalClock(-4, "Yerevan, Armenia"),
+        new CountdownTimer(Duration.ofMinutes(1), timer)
     ));
     // see https://www.geeksforgeeks.org/java/initialize-an-arraylist-in-java/
     for (Clock c : clocks) {
