@@ -14,8 +14,8 @@ public class CountdownTimer extends Clock {
 
     panel = new JPanel();
     panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-    panel.setBorder(BorderFactory.createEmptyBorder(5, 45, 5, 45));
-    panel.setPreferredSize(new Dimension(500,120));
+    panel.setBorder(BorderFactory.createEmptyBorder(5, 30, 5, 45));
+    panel.setPreferredSize(new Dimension(700,120));
     timeLabel = new JLabel();
     timeLabel.setFont(new Font(Font.DIALOG, Font.PLAIN, 72));
     timeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);

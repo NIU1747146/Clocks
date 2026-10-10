@@ -1,0 +1,17 @@
+Angel Moreno Renau - NIU: 1744714
+Manel Palomares Burgada - NIU: 1747146
+Victor Frauca Martinez - NIU: 1671963
+
+Angel Moreno Renau:
+- Clock: clase abstracta que implementa Observer y contiene el panel y show() comunes.
+- DigitalClock y AnalogClock: adaptadas para observar a ClockTimer en lugar de tener un timer propio.
+- CountdownTimer: cuenta atras con Duration, que no baja de 0:00:00.
+- Video o gif que demuestra el funcionamiento.
+
+Manel Palomares Burgada:
+- ClockTimer: unico temporizador (Observable) que notifica la hora cada 100 ms con un TimerTask.
+- StopWatch: cronometro con boton Start/Stop.
+
+Victor Frauca Martinez:
+- Main: crea el ClockTimer, los 8 relojes y los registra como observadores.
+- Diagrama de clases PlantUML (clocks.puml) y su exportacion a .png.

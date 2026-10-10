@@ -15,7 +15,8 @@ public class Main {
         new DigitalClock(-7, "Sonora, Mexico"),
         new AnalogClock(-1, "Berlin, Germany"),
         new DigitalClock(-4, "Yerevan, Armenia"),
-        new CountdownTimer(Duration.ofMinutes(1), timer)
+        new CountdownTimer(Duration.ofMinutes(1), timer),
+        new StopWatch(timer)
     ));
     // see https://www.geeksforgeeks.org/java/initialize-an-arraylist-in-java/
     for (Clock c : clocks) {
