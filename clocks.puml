@@ -1,7 +1,6 @@
 @startuml clocks
 title Clocks - Observer pattern
 skinparam classAttributeIconSize 0
-skinparam linetype ortho
 
 package "java.util" {
   class Observable {
@@ -13,93 +12,54 @@ package "java.util" {
   interface Observer {
     +update(o: Observable, arg: Object)
   }
-  class Timer
-  abstract class TimerTask {
-    +{abstract} run()
-  }
 }
 
 package independent_clocks {
   class ClockTimer {
     -period: int
-    -timer: Timer
-    -task: TimerTask
     +ClockTimer(period: int)
     +getPeriod(): int
   }
 
   abstract class Clock {
-    #panel: JPanel
     +show()
   }
 
   class DigitalClock {
-    -formatter: DateTimeFormatter
     -hoursOffsetTimeZone: int
-    -clockLabel: JLabel
     +DigitalClock(hoursOffsetTimeZone: int, worldPlace: String)
     +updateClockLabel()
-    +update(o: Observable, arg: Object)
   }
 
   class AnalogClock {
     -hoursOffsetTimeZone: int
     -worldPlace: String
     +AnalogClock(hoursOffsetTimeZone: int, worldPlace: String)
-    +update(o: Observable, arg: Object)
-  }
-
-  class "MyJPanel" as MyJPanel {
-    +paintComponent(g: Graphics)
-    -drawHand(...)
-    -drawClockFace(...)
   }
 
   class CountdownTimer {
     ~time: Duration
-    -timeLabel: JLabel
     +CountdownTimer(time: Duration, timer: ClockTimer)
-    +update(o: Observable, arg: Object)
     -format(): String
   }
 
   class StopWatch {
     ~time: Duration
-    -timeLabel: JLabel
-    -startStopButton: JButton
     -running: boolean
     +StopWatch(timer: ClockTimer)
-    +update(o: Observable, arg: Object)
     -format(): String
-  }
-
-  class Main {
-    +{static} main(args: String[])
   }
 }
 
-class JPanel
-class JFrame
-
 ClockTimer --|> Observable
-ClockTimer *-- Timer : timer
-ClockTimer *-- TimerTask : task (anonymous)
-ClockTimer ..> Observer : notifies
-
 Clock ..|> Observer
+
 DigitalClock --|> Clock
 AnalogClock --|> Clock
 CountdownTimer --|> Clock
 StopWatch --|> Clock
 
-Clock o-- JPanel : panel
-Clock ..> JFrame : show()
-AnalogClock *-- MyJPanel : inner class
-MyJPanel --|> JPanel
+CountdownTimer "0..*" --> "1" ClockTimer : timer
+StopWatch "0..*" --> "1" ClockTimer : timer
 
-CountdownTimer --> ClockTimer : timer (period)
-StopWatch --> ClockTimer : timer (period)
-
-Main ..> ClockTimer : creates
-Main ..> Clock : creates, addObserver
 @enduml
